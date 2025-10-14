@@ -1,0 +1,150 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  font-family: "Inter", sans-serif;
+}
+
+.nav__area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d1d1d1;
+  padding-bottom: 32px;
+}
+.nav__bar {
+  padding: 20px 50px;
+}
+.input__search__area {
+  padding: 15px 30px;
+  border: 2px solid #d1d1d1;
+  border-radius: 5px;
+}
+.input__search__area:focus {
+  outline: none;
+}
+.btn {
+  padding: 15px 25px;
+  border: 0px;
+  border-radius: 5px;
+}
+
+#categorise {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+#videos {
+  max-width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  padding: 20px 40px;
+}
+
+.card__images {
+  width: 100%;
+  border-radius: 20px;
+  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+.card__images__box {
+  position: relative;
+}
+.video__time {
+  background: black;
+  color: white;
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 10px;
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.title__img__and__text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
+}
+.title__img__and__text .video__title {
+  font-size: 16px;
+  font-weight: bold;
+}
+.youtube__Cname__and__icon {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: 50px;
+}
+.youtube__Cname__and__icon .c__name {
+  color: #5d5d5d;
+}
+.title__img__box {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+}
+
+.c__name__logo {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.view {
+  color: #5d5d5d;
+  margin-left: 50px;
+}
+
+
+.no__contant__img__and__text__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  grid-column: span 4;
+  margin-top: 120px; ;
+  
+}
+.no__contant__text{
+  font-size: 32px;
+  font-weight: bold;
+}
+
+@media (max-width: 1600px) {
+  #videos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 991px) {
+  #videos {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .nav__bar {
+    padding: 20px;
+  }
+  .input__search__area {
+    display: none;
+  }
+  .nav__area {
+    justify-content: space-around;
+  }
+  .btn {
+    padding: 10px 20px;
+  }
+  #videos {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
