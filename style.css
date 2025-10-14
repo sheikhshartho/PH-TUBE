@@ -32,6 +32,15 @@
   border-radius: 5px;
 }
 
+.btn__sort{
+  padding: 15px 25px;
+  border: 0px;
+  border-radius: 5px;
+  background: red;
+  color: #fff;
+  
+}
+
 #categorise {
   display: flex;
   justify-content: center;
@@ -147,4 +156,13 @@
   #videos {
     grid-template-columns: repeat(1, 1fr);
   }
+  .no__contant__text{
+  font-size: 20px;
+  text-align: center;
+}
+}
+
+.active{
+  background: red;
+  color: #fff;
 }

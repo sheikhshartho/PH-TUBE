@@ -18,12 +18,23 @@ function getTimeString(time) {
   const secend = remainsecend % 60;
   return `${hour} hour ${minit} minit ${secend} secend ago`;
 }
+const activeClassRemove = () => {
+  const buttons = document.getElementsByClassName("category__btn");
+  for (let btn of buttons) {
+    btn.classList.remove('active')
+  }
+}
 
 const categoryVideo = (id) => {
   // alert(id);
   fetch(`https://openapi.programming-hero.com/api/phero-tube/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayVideo(data.category))
+    .then((data) => {
+      activeClassRemove()
+      const activeBtn = document.getElementById(`btn-${id}`)
+      activeBtn.classList.add("active")
+      displayVideo(data.category);
+    })
     .catch((error) => console.log(error));
 };
 
@@ -100,7 +111,7 @@ const displayCategorise = (categorise) => {
     console.log(item);
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML = `
-    <button onclick="categoryVideo(${item.category_id})" class ="btn">
+    <button onclick="categoryVideo(${item.category_id})" id ="btn-${item.category_id}" class ="btn category__btn">
     ${item.category}
     </button>
     `;
