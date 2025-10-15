@@ -199,28 +199,44 @@
 }
 
 @media (max-width: 767px) {
+  .nav__area {
+    padding-bottom: 20px;
+}
   .nav__bar {
-    padding: 20px;
+    padding: 15px 10px;
+  }
+  .logo img{
+    width: 120px;
+  }
+  .btn__sort{
+    padding: 8px 10px;
   }
   .input__search__area {
-    display: none;
+    width: 180px;
+    padding: 5px;
   }
   .nav__area {
     justify-content: space-around;
   }
   .btn {
-    padding: 10px 20px;
+    padding: 8px 10px;
   }
   #videos {
     grid-template-columns: repeat(1, 1fr);
+    padding: 20px 20px;
   }
   .no__contant__text{
   font-size: 20px;
   text-align: center;
 }
+.btn__details {
+    padding: 6px 10px;
+    border-radius: 10px;
+}
 .modal{
   width: 380px;
-  height: auto ;}
+  height: auto ;
+  }
 }
 
 .active{

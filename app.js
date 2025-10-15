@@ -4,8 +4,9 @@ const loadCategorise = () => {
     .then((data) => displayCategorise(data.categories))
     .catch((error) => console.log(error));
 };
-const loadVideos = () => {
-  fetch("https://openapi.programming-hero.com/api/phero-tube/videos")
+
+const loadVideos = (searchText = '') => {
+  fetch(`https://openapi.programming-hero.com/api/phero-tube/videos?title=${searchText}`)
     .then((res) => res.json())
     .then((data) => displayVideo(data.videos))
     .catch((error) => console.log(error));
@@ -19,43 +20,18 @@ function getTimeString(time) {
   return `${hour} hour ${minit} minit ${secend} secend ago`;
 }
 
-const loadDetails = async(videoId) => {
-  console.log(videoId)
+const loadDetails = async (videoId) => {
+  console.log(videoId);
   const res = await fetch(
     `https://openapi.programming-hero.com/api/phero-tube/video/${videoId}`
   );
-  const data = await res.json()
+  const data = await res.json();
   displayDetails(data.video);
-}
-// {category_id: '1001', video_id: 'aaab', thumbnail: 'https://i.ibb.co/QPNzYVy/moonlight.jpg', title: 'Midnight Serenade', authors: Array(1), …}
-// authors
-// : 
-// [{…}]
-// category_id
-// : 
-// "1001"
-// description
-// : 
-// "'Midnight Serenade' by Noah Walker is a soulful journey into the depths of the night, capturing the mystique and allure of a moonlit evening. With 543K views, this song brings together tender melodies and evocative lyrics, making it a favorite among listeners seeking a contemplative yet uplifting experience. Immerse yourself in this musical masterpiece and feel the calm embrace of the night."
-// others
-// : 
-// {views: '543K', posted_date: ''}
-// thumbnail
-// : 
-// "https://i.ibb.co/QPNzYVy/moonlight.jpg"
-// title
-// : 
-// "Midnight Serenade"
-// video_id
-// : 
-// "aaab"
-// [[Prototype]]
-// : 
-// Object
+};
 
 const displayDetails = (video) => {
-  console.log(video)
-  const modal = document.querySelector('.modal')
+  console.log(video);
+  const modal = document.querySelector(".modal");
   const closeBtn = document.querySelector(".modal__close__button");
   const modalContent = document.getElementById("modal__content");
   modalContent.innerHTML = `
@@ -100,18 +76,17 @@ const displayDetails = (video) => {
           <p class='modal__description'>${video.description}</p>
   `;
   const modalContainer = document.querySelector(".modal__container");
-  modalContainer.style.display = 'flex'
+  modalContainer.style.display = "flex";
+  setTimeout(() => {
+    modal.style.transform = "scale(1)";
+  }, 10);
+  closeBtn.addEventListener("click", () => {
+    modal.style.transform = "scale(0.1)";
     setTimeout(() => {
-      modal.style.transform = "scale(1)";
-    }, 10);
-  closeBtn.addEventListener('click', () => {
-      modal.style.transform = "scale(0.1)";
-      setTimeout(() => {
-        modalContainer.style.display = "none";
-      }, 300);
-    
-  })
-}
+      modalContainer.style.display = "none";
+    }, 300);
+  });
+};
 
 const activeClassRemove = () => {
   const buttons = document.getElementsByClassName("category__btn");
@@ -183,7 +158,9 @@ const displayVideo = (videos) => {
             <h4 class="video__title">
               ${video.title}
             </h4>
-            <div><button onclick="loadDetails('${video.video_id}')" class= 'btn__details'>details</button></div>
+            <div><button onclick="loadDetails('${
+              video.video_id
+            }')" class= 'btn__details'>details</button></div>
             </div>
             <div class="youtube__Cname__and__icon">
               <p class="c__name">${video.authors[0].profile_name}</p>
@@ -215,6 +192,8 @@ const displayCategorise = (categorise) => {
     categoryContainer.append(buttonContainer);
   });
 };
-//
+document.getElementById("search__input").addEventListener('keyup', (e) => {
+   loadVideos(e.target.value);
+ })
 loadCategorise();
 loadVideos();
